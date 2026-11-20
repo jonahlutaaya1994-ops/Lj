@@ -1,4 +1,3 @@
-
 services:
   - type: web
     name: lj-ai-backend
