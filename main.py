@@ -78,8 +78,9 @@ def chat(request: ChatRequest):
             "model": response.model
         }
 
-    except Exception:
-        raise HTTPException(
-            status_code=502,
-            detail="Packet AI request failed"
-        )
+    except Exception as e:
+    print("PACKET AI ERROR:", repr(e))
+    raise HTTPException(
+        status_code=502,
+        detail=str(e)
+    )
