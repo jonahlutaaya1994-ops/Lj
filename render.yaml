@@ -1,1 +1,16 @@
-h
+
+services:
+  - type: web
+    name: lj-ai-backend
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: PACKET_API_KEY
+        sync: false
+      - key: PACKET_MODEL
+        value: Qwen/Qwen2.5-1.5B-Instruct
+      - key: PACKET_BASE_URL
+        value: https://api.packet.ai/v1
